@@ -18,6 +18,8 @@ import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { getMouseEventOptions } from "@testing-library/user-event/dist/utils";
+import { getMovies } from "../helper/getMovies";
 
 const style = {
   position: "absolute",
@@ -29,6 +31,9 @@ const style = {
   boxShadow: 24,
   p: 4,
   borderRadius: 5,
+
+  display:'flex',
+  flexDirection: 'column'
 };
 
 const cardImg = {
@@ -39,9 +44,10 @@ const cardImg = {
 
 export const SwapiCard = (props) => {
 
-  
+
 
   const {
+    id,
     name,
     height,
     mass,
@@ -60,14 +66,10 @@ export const SwapiCard = (props) => {
     url,
   } = props;
 
-  const [peliculas, setPeliculas] = useState()
-  const [planetas, setPlanetas] = useState()
-  // const [first, setfirst] = useState()
-  console.log(typeof props.height);
+  const [movies, setMovies] = useState();
+  const [planets, setPlanets] = useState();
 
   const navigate = useNavigate();
-
-
   const nameImg = name.replaceAll(' ', '').trim();
   const imagePath = `/assets/${nameImg}.jpeg`;
 
@@ -75,16 +77,21 @@ export const SwapiCard = (props) => {
 
   useEffect(() => {
     const pathUrl = location.pathname;
-    const partUrl = pathUrl.slice(2).replaceAll('%20','');
-    
+    const partUrl = pathUrl.slice(2).replaceAll('%20', '');
+
     if (partUrl === nameImg) {
       setOpen(true);
     }
   }, [location, nameImg]);
 
+  useEffect(()=> {
+    
+  })
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     setOpen(true);
+    getMovies(films);
   };
   const handleClose = () => {
     setOpen(false);
@@ -142,21 +149,21 @@ export const SwapiCard = (props) => {
                   label={height}
                   deleteIcon={<DeleteIcon />}
                   variant="outlined"
-                  color="warning" 
+                  color="warning"
                 />
               </Tooltip>
-            
+
               <Chip
                 label={hair_color}
                 deleteIcon={<DeleteIcon />}
                 variant="outlined"
-                color="primary" 
+                color="primary"
               />
               <Chip
                 label={mass}
                 deleteIcon={<DeleteIcon />}
                 variant="outlined"
-                color="warning" 
+                color="warning"
               />
             </Stack>
           </CardActionArea>
@@ -204,10 +211,9 @@ export const SwapiCard = (props) => {
                     </Typography>
                     <Stack direction="row" spacing={1}>
                       <Chip
-                        label={name}
+                        label={'films'}
                         deleteIcon={<DeleteIcon />}
                         variant="outlined"
-                        sx={{bgcolor: 'blue'}}
                       />
                     </Stack>
                     <Typography variant="h6" color="text.primary">
@@ -215,7 +221,7 @@ export const SwapiCard = (props) => {
                     </Typography>
                     <Stack direction="row" spacing={1}>
                       <Chip
-                        label={name}
+                        label={'name director'}
                         deleteIcon={<DeleteIcon />}
                         variant="outlined"
                       />
@@ -225,19 +231,7 @@ export const SwapiCard = (props) => {
                     <Typography variant="h6" color="text.primary">
                       Planets:
                     </Typography>
-                    {/* {name
-                      .split(" ")
-                      .map(
-                        (char, index) =>
-                          index <= 3 && (
-                            <Chip
-                              label={char}
-                              deleteIcon={<DeleteIcon />}
-                              variant="outlined"
-                              key={`char-${index}`}
-                            />
-                          )
-                      )} */}
+                    {'planets'}
                   </Stack>
                 </CardActionArea>
                 <CardActions></CardActions>
