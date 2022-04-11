@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/olmeiro/LQNChallenge/tree/deploy/static/js/main.9adb3390.js",
+    "index.html": "/olmeiro/LQNChallenge/tree/deploy/index.html",
+    "main.9adb3390.js.map": "/olmeiro/LQNChallenge/tree/deploy/static/js/main.9adb3390.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.9adb3390.js"
+  ]
+}
